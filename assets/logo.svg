@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-labelledby="title desc">
+  <title id="title">EDF Dashboard Editor</title>
+  <desc id="desc">A dashboard gauge and data-line logo for EDF Dashboard Editor.</desc>
+  <defs>
+    <linearGradient id="cyan" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#29e4ff"/>
+      <stop offset="1" stop-color="#0077c8"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#222832"/>
+      <stop offset="1" stop-color="#11151b"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="720" height="220" rx="26" fill="#15191f"/>
+  <rect x="18" y="18" width="684" height="184" rx="20" fill="url(#panel)" stroke="#303844"/>
+  <g transform="translate(46 34)">
+    <rect x="0" y="0" width="162" height="152" rx="18" fill="#0b0f14" stroke="#2b3440"/>
+    <path d="M33 111a54 54 0 0 1 96 0" fill="none" stroke="#25313d" stroke-width="18" stroke-linecap="round"/>
+    <path d="M33 111a54 54 0 0 1 82-46" fill="none" stroke="url(#cyan)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+    <path d="M81 108l38-47" stroke="#f4f7fb" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="81" cy="108" r="8" fill="#f4f7fb"/>
+    <path d="M29 31h104M29 52h104M29 73h104" stroke="#1b2530" stroke-width="2"/>
+    <path d="M29 125h104" stroke="#1b2530" stroke-width="2"/>
+    <path d="M22 131c24-30 42 11 66-19s42 5 53-25" fill="none" stroke="#29e4ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(242 58)">
+    <text x="0" y="54" fill="#f4f7fb" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="1">EDF</text>
+    <text x="0" y="104" fill="#29e4ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="600">Dashboard Editor</text>
+    <text x="0" y="136" fill="#8f9baa" font-family="Segoe UI, Arial, sans-serif" font-size="18">Open, edit, and save ECU Connect dashboard files</text>
+  </g>
+</svg>
