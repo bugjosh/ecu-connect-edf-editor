@@ -1,5 +1,22 @@
 # Bugfix Changelog
 
+## Revision 2.1.2 - 2026-05-23
+
+### Affected Areas
+
+- ReadMethod defaults for new widgets and EDF parsing.
+- Per-vehicle ReadMethod resolution and autocomplete ordering.
+- BMW and modern Nissan vehicle compatibility.
+
+### Fixes and Changes
+
+- Changed the default `ReadMethod` for new widgets from the legacy `CAN_OBD_LID_Nissan` to `CAN_OBD_RR2_Nissan_Gen1_OEM`, matching the value ECU Connect now writes for VR30TT Gen1b dashboards.
+- Added a per-`VehicleId` primary ReadMethod map so VR30TT Gen1/Gen2, RZ34, GTR, 350Z/370Z, Juke, Frontier, Sentra, VK56VD, and all BMW vehicles receive an appropriate default instead of falling through to a generic Nissan literal.
+- Populated the previously empty BMW ReadMethod family with `DCAN_BMW_PID`, `DCAN_BMW_CID`, `DCAN_BMW_RR1`, and `CAN_OBD_CID_8205`.
+- Reordered the Nissan ReadMethod family so modern `CAN_OBD_RR2_Nissan_Gen1_OEM`, `CAN_OBD_RR2_Nissan_Gen1_RR`, `CAN_OBD_RR2_Nissan_Gen2_OEM`, and `CAN_OBD_RR2_Nissan_Gen2_RR` appear before the legacy LID names in the autocomplete dropdown.
+- Added `CAN_Ford_Stream` to the Ford ReadMethod family.
+- Updated parser and serializer fallbacks so dashboards saved or loaded with a blank `ReadMethod` field now use the modern Gen1b OEM default instead of the legacy Nissan name.
+
 ## Revision 2.1.1 - 2026-05-14
 
 ### Affected Areas

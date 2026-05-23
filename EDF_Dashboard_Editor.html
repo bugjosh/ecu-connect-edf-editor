@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="editor-revision" content="2.1.1">
+<meta name="editor-revision" content="2.1.2">
 <title>EDF Dashboard Editor</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -964,7 +964,7 @@
       </span>
       <h1>EDF Dashboard Editor</h1>
     </div>
-    <span class="revision-badge" id="editor-revision">rev 2.1.1</span>
+    <span class="revision-badge" id="editor-revision">rev 2.1.2</span>
     <div class="file-actions">
       <button id="btn-new">New</button>
       <button id="btn-open">Open .edf</button>
@@ -1189,7 +1189,7 @@
 <script>
 'use strict';
 
-const EDITOR_REVISION = '2.1.1';
+const EDITOR_REVISION = '2.1.2';
 
 
 
@@ -1381,7 +1381,7 @@ const WIDGET_DEFAULTS = {
   XmlDashboardGaugeInstrument: () => ({
     _type: 'XmlDashboardGaugeInstrument',
     X: 10, Y: 10, Width: 145, Height: 150,
-    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
     ThresholdLow:  { Value: null, Type: 'Alarm', FlashScreen: false },
     ThresholdHigh: { Value: null, Type: 'Alarm', FlashScreen: false },
     Min: 0, Max: 100, ShowPeak: true,
@@ -1389,7 +1389,7 @@ const WIDGET_DEFAULTS = {
   XmlDashboardBarInstrument: () => ({
     _type: 'XmlDashboardBarInstrument',
     X: 10, Y: 10, Width: 145, Height: 100,
-    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
     ThresholdLow:  { Value: null, Type: 'Alarm', FlashScreen: false },
     ThresholdHigh: { Value: null, Type: 'Alarm', FlashScreen: false },
     Min: 0, Max: 100, ShowPeak: true,
@@ -1397,14 +1397,14 @@ const WIDGET_DEFAULTS = {
   XmlDashboardTextInstrument: () => ({
     _type: 'XmlDashboardTextInstrument',
     X: 10, Y: 10, Width: 145, Height: 100,
-    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
     ThresholdLow:  { Value: null, Type: 'Alarm', FlashScreen: false },
     ThresholdHigh: { Value: null, Type: 'Alarm', FlashScreen: false },
   }),
   XmlDashboardVerticalBarInstrument: () => ({
     _type: 'XmlDashboardVerticalBarInstrument',
     X: 10, Y: 10, Width: 100, Height: 240,
-    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
     ThresholdLow:  { Value: null, Type: 'Alarm', FlashScreen: false },
     ThresholdHigh: { Value: null, Type: 'Alarm', FlashScreen: false },
     Min: 0, Max: 100, ShowPeak: true,
@@ -1412,14 +1412,14 @@ const WIDGET_DEFAULTS = {
   XmlDashboardTextDigInstrument: () => ({
     _type: 'XmlDashboardTextDigInstrument',
     X: 10, Y: 10, Width: 145, Height: 100,
-    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
     ThresholdLow:  { Value: null, Type: 'Alarm', FlashScreen: false },
     ThresholdHigh: { Value: null, Type: 'Alarm', FlashScreen: false },
   }),
   XmlDashboardLedInstrument: () => ({
     _type: 'XmlDashboardLedInstrument',
     X: 10, Y: 10, Width: 100, Height: 100,
-    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+    ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
     ThresholdLow:  { Value: null, Type: 'Alarm', FlashScreen: false },
     ThresholdHigh: { Value: null, Type: 'Alarm', FlashScreen: false },
     StateColors: [],
@@ -1452,7 +1452,7 @@ const COMMON_ECUTYPES = ['Ecm','Tcm','Abs','Tpms','Aux'];
 
 const COMMON_THRESHOLDTYPES = ['Alarm','WarmingUp'];
 
-const COMMON_PARAMS = COMBINED_PARAMS.map(p => ({ name: p[0], unit: p[1], readMethod: 'CAN_OBD_LID_Nissan' }));
+const COMMON_PARAMS = COMBINED_PARAMS.map(p => ({ name: p[0], unit: p[1], readMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM' }));
 const COMMON_VEHICLES = VEHICLES.map(v => v.id);
 
 const DEFAULT_DASHBOARD = () => ({
@@ -1517,18 +1517,17 @@ const READMETHODS_UNIVERSAL = [
 
 const READMETHODS_BY_FAMILY = {
   Nissan: [
+    'CAN_OBD_RR2_Nissan_Gen1_OEM', 'CAN_OBD_RR2_Nissan_Gen1_RR',
+    'CAN_OBD_RR2_Nissan_Gen2_OEM', 'CAN_OBD_RR2_Nissan_Gen2_RR',
+    'CAN_OBD_RR2_Nissan_OEM', 'CAN_OBD_RR1_Nissan',
     'CAN_OBD_LID_Nissan', 'CAN_OBD_LID_Nissan_Addr',
     'CAN_OBD_LID_Nissan_Legacy', 'CAN_OBD_LID_Nissan_Addr_Legacy',
     'CAN_OBD_CID_Nissan_Gen1', 'CAN_OBD_CID_Nissan_Gen2',
     'CAN_OBD_CID_Nissan_Gen3', 'CAN_OBD_CID_Nissan_RE7R',
     'CAN_OBD_ADD_Nissan_TCM',
-    'CAN_OBD_RR1_Nissan',
-    'CAN_OBD_RR2_Nissan_OEM', 'CAN_OBD_RR2_Nissan_Gen1_OEM',
-    'CAN_OBD_RR2_Nissan_Gen1_RR', 'CAN_OBD_RR2_Nissan_Gen2_OEM',
-    'CAN_OBD_RR2_Nissan_Gen2_RR',
     'Multi_LID_Nissan',
   ],
-  Ford:    ['Multi_Ford', 'CAN_OBD_CID_Ford'],
+  Ford:    ['Multi_Ford', 'CAN_OBD_CID_Ford', 'CAN_Ford_Stream'],
   Lincoln: ['Multi_Ford', 'CAN_OBD_CID_Ford'],
   Subaru: [
     'CAN_OBD_LID_Subaru', 'CAN_OBD_LID_SubaruBRZ', 'CAN_OBD_LID_Subaru_Addr',
@@ -1546,10 +1545,35 @@ const READMETHODS_BY_FAMILY = {
     'CAN_OBD_RRID_Volkswagen_ECM', 'CAN_OBD_RRID_Volkswagen_TCM',
   ],
   Isuzu:   ['Multi_Isuzu'],
-  Bmw:     [],
+  Bmw:     ['DCAN_BMW_PID', 'DCAN_BMW_CID', 'DCAN_BMW_RR1', 'CAN_OBD_CID_8205'],
   Generic: ['Kline'],
   Wingle:  ['CAN_OBD_ADD_Wingle'],
 };
+
+const PRIMARY_READMETHOD_BY_VID = [
+  ['NissanVR30TTEcmOnlyGen2', 'CAN_OBD_RR2_Nissan_Gen2_OEM'],
+  ['NissanVR30TTGen2',        'CAN_OBD_RR2_Nissan_Gen2_OEM'],
+  ['NissanVR30TTEcmOnlyGen1', 'CAN_OBD_RR2_Nissan_Gen1_OEM'],
+  ['NissanVR30TTGen1',        'CAN_OBD_RR2_Nissan_Gen1_OEM'],
+  ['NissanVR30TT',            'CAN_OBD_RR2_Nissan_Gen1_OEM'],
+  ['NissanRZ34',              'CAN_OBD_RR2_Nissan_Gen2_OEM'],
+  ['NissanGTR',               'CAN_OBD_CID_Nissan_Gen1'],
+  ['Nissan370z',              'CAN_OBD_LID_Nissan'],
+  ['Nissan350z',              'CAN_OBD_LID_Nissan'],
+  ['NissanJuke',              'CAN_OBD_LID_Nissan'],
+  ['NissanFrontier',          'CAN_OBD_LID_Nissan'],
+  ['NissanVK56VD',            'CAN_OBD_LID_Nissan'],
+  ['NissanSentra',            'CAN_OBD_LID_Nissan'],
+  ['Bmw',                     'DCAN_BMW_PID'],
+];
+
+function primaryReadMethodForVehicle(vid) {
+  if (!vid) return null;
+  for (const [prefix, rm] of PRIMARY_READMETHOD_BY_VID) {
+    if (vid.startsWith(prefix)) return rm;
+  }
+  return null;
+}
 
 function vehicleFamily(vid) {
   if (!vid) return null;
@@ -1564,8 +1588,10 @@ function readMethodsForVehicle(vid) {
   if (!fam) return COMMON_READMETHODS;
 
   const familyList = READMETHODS_BY_FAMILY[fam] || [];
+  const primary = primaryReadMethodForVehicle(vid);
+  const ordered = primary ? [primary, ...familyList] : familyList;
   const seen = new Set();
-  return [...familyList, ...READMETHODS_UNIVERSAL].filter(rm => !seen.has(rm) && seen.add(rm));
+  return [...ordered, ...READMETHODS_UNIVERSAL].filter(rm => !seen.has(rm) && seen.add(rm));
 }
 
 function ecuTypesForVehicle(vid) {
@@ -1816,9 +1842,9 @@ function parseDashboardXml(xmlText) {
             w.ParamRef = pr ? {
               Name: txt(pr, 'Name'),
               DisplayUnitString: txt(pr, 'DisplayUnitString'),
-              ReadMethod: txt(pr, 'ReadMethod', 'CAN_OBD_LID_Nissan'),
+              ReadMethod: txt(pr, 'ReadMethod', 'CAN_OBD_RR2_Nissan_Gen1_OEM'),
               EcuType: txt(pr, 'EcuType', 'Ecm'),
-            } : { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' };
+            } : { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' };
           }
 
 
@@ -1885,9 +1911,9 @@ function parseDashboardXml(xmlText) {
                   ParamRef: pr ? {
                     Name: txt(pr, 'Name'),
                     DisplayUnitString: txt(pr, 'DisplayUnitString'),
-                    ReadMethod: txt(pr, 'ReadMethod', 'CAN_OBD_LID_Nissan'),
+                    ReadMethod: txt(pr, 'ReadMethod', 'CAN_OBD_RR2_Nissan_Gen1_OEM'),
                     EcuType: txt(pr, 'EcuType', 'Ecm'),
-                  } : { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+                  } : { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
                   Color: txt(chEl, 'Color', ''),
                 });
               }
@@ -1968,7 +1994,7 @@ function serializeDashboardXml(model) {
       ind + '<ParamRef>',
       tag(depth + 1, 'Name', (pr && pr.Name) || ''),
       tag(depth + 1, 'DisplayUnitString', (pr && pr.DisplayUnitString) || ''),
-      tag(depth + 1, 'ReadMethod', (pr && pr.ReadMethod) || 'CAN_OBD_LID_Nissan'),
+      tag(depth + 1, 'ReadMethod', (pr && pr.ReadMethod) || 'CAN_OBD_RR2_Nissan_Gen1_OEM'),
       tag(depth + 1, 'EcuType', (pr && pr.EcuType) || 'Ecm'),
       ind + '</ParamRef>',
     ];
@@ -2834,7 +2860,7 @@ function renderProperties() {
     wgt.Channels = wgt.Channels || [];
     const palette = ['00D4FF','F12922','22F155','FF8800','AA44EE','FFAA00'];
     wgt.Channels.push({
-      ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_LID_Nissan', EcuType: 'Ecm' },
+      ParamRef: { Name: '', DisplayUnitString: '', ReadMethod: 'CAN_OBD_RR2_Nissan_Gen1_OEM', EcuType: 'Ecm' },
       Color: palette[wgt.Channels.length % palette.length],
     });
     renderProperties(); renderCanvas();
@@ -3992,7 +4018,7 @@ function applyParamToWidget(w, name) {
   }
   if (!w.ParamRef.ReadMethod) {
     const rms = readMethodsForVehicle(state.model.VehicleId);
-    w.ParamRef.ReadMethod = rms[0] || 'CAN_OBD_LID_Nissan';
+    w.ParamRef.ReadMethod = rms[0] || 'CAN_OBD_RR2_Nissan_Gen1_OEM';
     changed = true;
   }
   const def = WIDGET_TYPES[w._type];
@@ -4022,7 +4048,7 @@ function applyParamToChannel(channel, name) {
   }
   if (!channel.ParamRef.ReadMethod) {
     const rms = readMethodsForVehicle(state.model.VehicleId);
-    channel.ParamRef.ReadMethod = rms[0] || 'CAN_OBD_LID_Nissan';
+    channel.ParamRef.ReadMethod = rms[0] || 'CAN_OBD_RR2_Nissan_Gen1_OEM';
     changed = true;
   }
   return changed;
