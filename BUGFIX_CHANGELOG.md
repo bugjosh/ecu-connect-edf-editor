@@ -1,5 +1,44 @@
 # Bugfix Changelog
 
+## Revision 2.1.3 - 2026-09-25
+
+### Affected Areas
+
+- Embedded vehicle and parameter data.
+- ReadMethod defaults for new widgets, chart channels, and EDF parsing/saving.
+- Parameter picker, vehicle switching, and the compatibility report.
+
+### Fixes and Changes
+
+- ECU Connect only resolves a dashboard parameter when its EcuType, Name, DisplayUnitString, and `ReadMethod` all match the vehicle's LogParam exactly. Revision 2.1.2 applied the VR30TT Gen1 ReadMethod (`CAN_OBD_RR2_Nissan_Gen1_OEM`) everywhere, which broke new widgets on 370Z, GTR, Juke, Frontier, BMW, Ford, and most other vehicles.
+- Regenerated the embedded vehicle and parameter data from ECU Connect's own mapping: ECU definition to VehicleId, and each ECU class's LogParams file. The previous data matched vehicles to files by name. Corrections:
+  - RZ34 now lists the VR30TT parameters, not the 370Z ones.
+  - 350Z Gen2 uses the K-Line file.
+  - VR30TT TCM parameters come from the RE7R TCM file the app loads.
+  - BMW 8HP automatics and VW DSG vehicles now include their TCM parameters.
+  - ECM-only VR30TT and TCM-only GTR IDs list only the ECU they have.
+  - Subaru DIT includes the shared DIT file.
+  - Mazda DISI Gen1 includes both of its files.
+- Every parameter now carries the ReadMethod ECU Connect uses for it, and picking a parameter applies that exact ReadMethod. Each vehicle's default ReadMethod per ECU comes from the same data:
+  - GTR: `CAN_OBD_LID_Nissan` (not `CAN_OBD_CID_Nissan_Gen1`).
+  - BMW: `DCAN_BMW_CID` (not `DCAN_BMW_PID`).
+  - Volkswagen: `CAN_OBD_RR2_Volkswagen_ECM`.
+  - Generic OBD: `CAN_OBD_PID`.
+  - 350Z Gen1/Gen2: `Multi_LID_Nissan`.
+  - VK56VD and 350Z Gen3: `CAN_OBD_LID_Nissan_Legacy`.
+  - Nissan TCMs: `CAN_OBD_LID`.
+- Every VR30TT ID, including Gen2, RZ34, and the legacy `NissanVR30TT`/`NissanVR30TTGen2`, defaults to `CAN_OBD_RR2_Nissan_Gen1_OEM`. All of their ECU definitions load the same `Nissan_VR30TT_ECM.exml`, and the app never translates Nissan ReadMethods.
+- Added RaceROM parameters with their exact ReadMethods from the five RaceROM tables in the app's demo simulator: 370Z, GTR, Ford EcoBoost, BRZ, and GR86.
+- Added parameters seen in real sample dashboards with their exact ReadMethods, for example GTR `Boost Target` on `CAN_OBD_CID_Nissan_Gen2` from newer RaceROM builds.
+- Removed RaceROM names copied from other vehicles with no source, on vehicles that have a real RaceROM table.
+- No VR30TT RaceROM table ships in the app, so the existing VR30TT RaceROM names are kept with an inferred `CAN_OBD_RR2_Nissan_Gen1_RR`, or `CAN_OBD_CID_Nissan_Gen1` for computed channels.
+- The parameter picker shows each parameter's ReadMethod and applies the exact row chosen, so parameters that exist in both OEM and RaceROM form (for example BRZ "Engine Load") can be told apart. Committing the Name field keeps the chosen variant.
+- New widgets, `+ Add channel` chart channels, and parser/serializer fallbacks resolve the default through the dashboard's `VehicleId` and `EcuType`. On a TCM-only vehicle, new widgets start as `Tcm`.
+- Picking a parameter from a different ECU no longer leaves the previous ECU's ReadMethod behind.
+- Switching vehicles moves ReadMethods that were the old vehicle's default to the new vehicle's default, including Nissan-to-Nissan switches. Custom ReadMethods that are still valid are kept.
+- The compatibility report warns when a ReadMethod is not valid for the dashboard's vehicle.
+- Removed the nonexistent `Kline` ReadMethod. Added the missing ECU Connect names (`DCAN_BMW_*`, `CAN_Ford_Stream`, `KLine_*`) to the fallback list, `KLine_SSM_stream` to Subaru, and `CAN_Ford_Stream` to Lincoln.
+
 ## Revision 2.1.2 - 2026-05-23
 
 ### Affected Areas
